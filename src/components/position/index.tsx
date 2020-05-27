@@ -8,21 +8,22 @@ interface PlayerData {
   name: string;
 }
 
-const droppedMethod = (position: string) => {
+const droppedMethod = (item: any, position: string) => {
   console.log(`dropped on position ${position}`);
 };
 
-const canDropThis = (pos: any) => {
+const canDropThis = (item: any, pos: any) => {
   return pos === '2';
 };
 
 const Position = (props: PlayerData) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.PLAYER,
-    drop: () => droppedMethod(props.name),
+    drop: (item, mon) => droppedMethod(item, props.name),
+    canDrop: (item, mon) => canDropThis(item, props.id),
     collect: (mon) => ({
       isOver: !!mon.isOver(),
-      canDrop: canDropThis(props.id),
+      canDrop: !!mon.canDrop(),
     }),
   });
 
