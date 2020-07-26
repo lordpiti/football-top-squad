@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Player from '../player';
 import './player-list.scss';
-import { PlayerData } from '../position';
+import { useDispatch, useSelector } from 'react-redux';
+import { TopSquadState } from '../..';
+import * as actionCreators from '../../store/players/playerActions';
 
 const PlayerList = () => {
-  for (var playerList: PlayerData[] = [], i = 0; i < 50; ++i)
-    playerList[i] = { id: i.toString(), name: `Player ${i}` };
+  const dispatch = useDispatch();
+
+  const theState = useSelector((state: TopSquadState) => ({
+    allPlayers: state.players.players,
+  }));
+
+  useEffect(() => {
+    dispatch(actionCreators.loadPlayerListAction());
+  }, []);
 
   return (
-    <div className='player-list'>
-      {playerList.map((item) => (
-        <Player player={item} />
-      ))}
-    </div>
+    <>
+      {theState.allPlayers && (
+        <div className='player-list'>
+          {theState.allPlayers.map((item, index) => (
+            <Player key={index} player={item} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

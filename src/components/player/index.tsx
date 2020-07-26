@@ -2,7 +2,11 @@ import React from 'react';
 import './player.scss';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../../App';
-import { PlayerData } from '../position';
+
+export interface PlayerData {
+  id: number;
+  name: string;
+}
 
 interface PlayerProps {
   player: PlayerData;
