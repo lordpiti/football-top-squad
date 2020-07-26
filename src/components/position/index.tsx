@@ -3,7 +3,7 @@ import './position.scss';
 import { useDrop, DragObjectWithType } from 'react-dnd';
 import { ItemTypes } from '../../App';
 
-interface PlayerData {
+export interface PlayerData {
   id: string;
   name: string;
 }
