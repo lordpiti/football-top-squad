@@ -3,9 +3,22 @@ import './player.scss';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../../App';
 
-const Player = (props: any) => {
+interface PlayerProps {
+  player: PlayerData;
+}
+
+export interface PlayerData {
+  name: string;
+  id: number;
+}
+
+const Player = ({ player }: PlayerProps) => {
   const [{ isDragging }, drag] = useDrag({
-    item: { type: ItemTypes.PLAYER },
+    item: {
+      type: ItemTypes.PLAYER,
+      name: player.name,
+      id: player.id,
+    },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -20,7 +33,7 @@ const Player = (props: any) => {
         cursor: 'move',
       }}
     >
-      Player Test
+      {player.name}
     </div>
   );
 };

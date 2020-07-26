@@ -1,6 +1,6 @@
 import React from 'react';
 import './position.scss';
-import { useDrop } from 'react-dnd';
+import { useDrop, DragObjectWithType } from 'react-dnd';
 import { ItemTypes } from '../../App';
 
 interface PlayerData {
@@ -8,18 +8,20 @@ interface PlayerData {
   name: string;
 }
 
-const droppedMethod = (item: any, position: string) => {
-  console.log(`dropped on position ${position}`);
+type AllProps = DragObjectWithType & PlayerData;
+
+const droppedMethod = (item: AllProps, position: string) => {
+  console.log(`${item.name} dropped on position ${position}`);
 };
 
-const canDropThis = (item: any, pos: any) => {
+const canDropThis = (item: AllProps, pos: any) => {
   return pos === '2';
 };
 
 const Position = (props: PlayerData) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.PLAYER,
-    drop: (item, mon) => droppedMethod(item, props.name),
+    drop: (item: AllProps, mon) => droppedMethod(item, props.name),
     canDrop: (item, mon) => canDropThis(item, props.id),
     collect: (mon) => ({
       isOver: !!mon.isOver(),
