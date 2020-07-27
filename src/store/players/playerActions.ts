@@ -1,5 +1,4 @@
 import * as actionTypes from './playerActionTypes';
-// import Formatters from '../../utilities/formatters';
 import { TopSquadThunk, TopSquadDispatch } from '../..';
 import { PlayerData } from '../../components/player';
 
