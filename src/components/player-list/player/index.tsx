@@ -1,11 +1,13 @@
 import React from 'react';
 import './player.scss';
 import { useDrag } from 'react-dnd';
-import { ItemTypes } from '../../App';
+import { ItemTypes } from '../../../App';
+import { Positions } from '../../../utilities/enums';
 
 export interface PlayerData {
   id: number;
   name: string;
+  positionCode: Positions;
 }
 
 interface PlayerProps {
@@ -18,6 +20,7 @@ const Player = ({ player }: PlayerProps) => {
       type: ItemTypes.PLAYER,
       name: player.name,
       id: player.id,
+      positionCode: player.positionCode,
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
@@ -33,7 +36,7 @@ const Player = ({ player }: PlayerProps) => {
         cursor: 'move',
       }}
     >
-      {player.name}
+      {player.name} - {Positions[player.positionCode]} - {player.positionCode}
     </div>
   );
 };

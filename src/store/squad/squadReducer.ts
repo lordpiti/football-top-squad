@@ -1,7 +1,7 @@
 import * as actionTypes from './squadActionTypes';
-import { PlayerData } from '../../components/player';
+import { PlayerData } from '../../components/player-list/player';
 
-type PlayerDataOrEmpty = PlayerData | {};
+export type PlayerDataOrEmpty = PlayerData | {};
 
 export interface SquadState {
   squad: PlayerDataOrEmpty[];

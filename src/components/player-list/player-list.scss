@@ -1,6 +1,7 @@
 .player-list {
-  display: flex;
-  justify-content: space-evenly;
+  // display: flex;
+  // justify-content: space-evenly;
   height: 820px;
-  flex-direction: column;
+  //flex-direction: column;
+  overflow-y: auto;
 }

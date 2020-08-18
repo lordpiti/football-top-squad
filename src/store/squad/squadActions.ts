@@ -1,5 +1,5 @@
 import * as actionTypes from './squadActionTypes';
-import { PlayerData } from '../../components/player';
+import { PlayerData } from '../../components/player-list/player';
 // import { TopSquadThunk, TopSquadDispatch } from '..';
 
 export const selectPlayerSquadAction = (selectPlayerSquadPayload: {

@@ -1,10 +1,10 @@
 import React from 'react';
 import './position.scss';
 import { useDrop, DragObjectWithType } from 'react-dnd';
-import { ItemTypes } from '../../App';
+import { ItemTypes } from '../../../App';
 import { useDispatch } from 'react-redux';
-import * as actionCreators from '../../store/squad/squadActions';
-import { PlayerData } from '../player';
+import * as actionCreators from '../../../store/squad/squadActions';
+import { PlayerData } from '../../player-list/player';
 
 export interface PositionProps {
   positionIndex: number;
@@ -14,14 +14,18 @@ export interface PositionProps {
 type AllProps = DragObjectWithType & PlayerData;
 
 const canDropThis = (item: AllProps, pos: number) => {
-  return pos === 2;
+  return (
+    (item.positionCode === 1 && pos === 0) ||
+    (item.positionCode === 2 && pos > 0 && pos < 5) ||
+    (item.positionCode === 3 && pos > 4 && pos < 9) ||
+    (item.positionCode === 4 && pos > 8 && pos < 11)
+  );
 };
 
 const Position = (props: PositionProps) => {
   const dispatch = useDispatch();
 
   const droppedMethod = (item: AllProps, position: number) => {
-    debugger;
     console.log(`${item.name} dropped on position ${position}`);
     dispatch(
       actionCreators.selectPlayerSquadAction({
@@ -29,6 +33,7 @@ const Position = (props: PositionProps) => {
         player: {
           id: item.id,
           name: item.name,
+          positionCode: item.positionCode,
         },
       })
     );

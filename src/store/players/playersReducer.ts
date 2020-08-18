@@ -1,5 +1,5 @@
 import * as actionTypes from './playerActionTypes';
-import { PlayerData } from '../../components/player';
+import { PlayerData } from '../../components/player-list/player';
 
 export interface PlayersState {
   players: PlayerData[];
@@ -21,6 +21,7 @@ const reducer = (state = initialState, action: any) => {
           id: item.playerId,
           name: item.name + ' ' + item.surname,
           team: item.teamName,
+          positionCode: item.positionCode,
         };
       });
       return {
