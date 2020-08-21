@@ -12,9 +12,10 @@ export interface PlayerData {
 
 interface PlayerProps {
   player: PlayerData;
+  isSelected: boolean;
 }
 
-const Player = ({ player }: PlayerProps) => {
+const Player = ({ player, isSelected }: PlayerProps) => {
   const [{ isDragging }, drag] = useDrag({
     item: {
       type: ItemTypes.PLAYER,
@@ -22,6 +23,7 @@ const Player = ({ player }: PlayerProps) => {
       id: player.id,
       positionCode: player.positionCode,
     },
+    canDrag: !isSelected,
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
@@ -29,14 +31,14 @@ const Player = ({ player }: PlayerProps) => {
 
   return (
     <div
-      className='player'
+      className={`player ${isSelected ? 'isSelectedInSquad' : ''}`}
       ref={drag}
       style={{
         opacity: isDragging ? 0.5 : 1,
         cursor: 'move',
       }}
     >
-      {player.name} - {Positions[player.positionCode]} - {player.positionCode}
+      {player.name}
     </div>
   );
 };

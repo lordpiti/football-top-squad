@@ -10,6 +10,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import playersReducer, { PlayersState } from './store/players/playersReducer';
 import { PlayersService } from './services/playersService';
 import squadReducer, { SquadState } from './store/squad/squadReducer';
+import { SquadService } from './services/squadService';
 
 export type TopSquadState = {
   players: PlayersState;
@@ -18,6 +19,7 @@ export type TopSquadState = {
 
 export type ThunkArguments = {
   playerService: PlayersService;
+  squadService: SquadService;
 };
 
 export type TopSquadDispatch = ThunkDispatch<
@@ -35,6 +37,7 @@ export type TopSquadThunk = ThunkAction<
 
 const thunkMiddleware = thunk.withExtraArgument<ThunkArguments>({
   playerService: new PlayersService(),
+  squadService: new SquadService(),
 });
 
 const rootReducer = combineReducers({
