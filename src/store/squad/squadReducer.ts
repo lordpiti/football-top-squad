@@ -1,5 +1,6 @@
 import * as actionTypes from './squadActionTypes';
 import { PlayerData } from '../../components/player-list/player';
+import { SquadActions } from './squadActionTypes';
 
 export type PlayerDataOrEmpty = PlayerData | {};
 
@@ -13,7 +14,7 @@ const initialState = {
 
 for (var i = 0; i < 11; i++) initialState.squad.push({});
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (state = initialState, action: SquadActions) => {
   switch (action.type) {
     case actionTypes.SELECT_PLAYER_SQUAD:
       const player = action.payload.player;

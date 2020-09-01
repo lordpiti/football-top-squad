@@ -42,7 +42,7 @@ const PlayerList = () => {
       theState.selectedSquad.filter((x) => Object.keys(x).length).length === 11
     ) {
       const squadToSubmit = theState.selectedSquad.map((x) => ({
-        id: (x as any).id,
+        id: (x as PlayerData).id,
       }));
       dispatch(
         squadActionCreators.saveSquadAction({

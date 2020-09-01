@@ -1,18 +1,17 @@
 import * as actionTypes from './squadActionTypes';
-import { PlayerData } from '../../components/player-list/player';
 import { TopSquadDispatch, TopSquadThunk } from '../..';
+import { PayloadSelectPlayerSquad, SaveSquadPayload } from './squadActionTypes';
 
-export const selectPlayerSquadAction = (selectPlayerSquadPayload: {
-  player: PlayerData;
-  position: number;
-}) => {
+export const selectPlayerSquadAction = (
+  selectPlayerSquadPayload: PayloadSelectPlayerSquad
+) => {
   return {
     type: actionTypes.SELECT_PLAYER_SQUAD,
     payload: selectPlayerSquadPayload,
   };
 };
 
-export const saveSquadAction = (squadData: any): TopSquadThunk => {
+export const saveSquadAction = (squadData: SaveSquadPayload): TopSquadThunk => {
   return async (dispatch: TopSquadDispatch, _, { squadService }) => {
     // dispatch(globalActionCreators.updateLoadingSpinner(true));
 
