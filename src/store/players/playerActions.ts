@@ -1,8 +1,8 @@
 import * as actionTypes from './playerActionTypes';
 import { TopSquadThunk, TopSquadDispatch } from '../..';
-import { PlayerData } from '../../components/player-list/player';
+import { PlayerResponse } from '../../services/playersService';
 
-export const loadPlayerListSuccessAction = (playerList: PlayerData[]) => {
+export const loadPlayerListSuccessAction = (playerList: PlayerResponse[]) => {
   return {
     type: actionTypes.LOAD_PLAYER_LIST,
     payload: playerList,

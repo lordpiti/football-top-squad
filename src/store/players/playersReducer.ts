@@ -1,11 +1,10 @@
 import * as actionTypes from './playerActionTypes';
 import { PlayerData } from '../../components/player-list/player';
+import { PlayerActions } from './playerActionTypes';
 
 export interface PlayersState {
   players: PlayerData[];
   filteredPlayers: PlayerData[];
-  // currentPlayer?: any;
-  // loading?: boolean;
 }
 
 const initialState = {
@@ -13,10 +12,10 @@ const initialState = {
   filteredPlayers: [],
 } as PlayersState;
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (state = initialState, action: PlayerActions) => {
   switch (action.type) {
     case actionTypes.LOAD_PLAYER_LIST:
-      const playerList = action.payload.map((item: any) => {
+      const playerList = action.payload.map((item) => {
         return {
           id: item.playerId,
           name: item.name + ' ' + item.surname,
