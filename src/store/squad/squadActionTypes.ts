@@ -1,4 +1,6 @@
 import { PlayerData } from '../../components/player-list/player/index';
+import { Positions } from '../../utilities/enums';
+
 //Squad
 export const LOAD_SQUAD = 'LOAD_SQUAD';
 export const SELECT_PLAYER_SQUAD = 'SELECT_PLAYER_SQUAD';
@@ -18,9 +20,14 @@ type SelectPlayerSquadAction = {
   payload: PayloadSelectPlayerSquad;
 };
 
+interface SquadMember {
+  id: number;
+  positionCode: Positions;
+}
+
 export interface SaveSquadPayload {
   userId: string;
-  squad: any;
+  squad: SquadMember[];
 }
 
 type SaveSquadAction = {

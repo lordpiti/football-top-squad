@@ -25,7 +25,7 @@ const PlayerList = () => {
 
   const getEnumValues = (enumerao: any) => {
     var enumValues: number[] = [];
-    for (var position in Positions) {
+    for (var position in enumerao) {
       if (!isNaN(Number(position))) {
         enumValues.push(Number(position));
       }
@@ -43,6 +43,7 @@ const PlayerList = () => {
     ) {
       const squadToSubmit = theState.selectedSquad.map((x) => ({
         id: (x as PlayerData).id,
+        positionCode: (x as PlayerData).positionCode,
       }));
       dispatch(
         squadActionCreators.saveSquadAction({
@@ -58,7 +59,7 @@ const PlayerList = () => {
     theState.selectedSquad.some((x) => (x as any).id === item.id);
 
   return (
-    <div>
+    <>
       <div>
         <select
           id='positionSelect'
@@ -93,7 +94,7 @@ const PlayerList = () => {
             ))}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

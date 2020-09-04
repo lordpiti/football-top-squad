@@ -21,7 +21,7 @@ export const loadPlayerListAction = (): TopSquadThunk => {
     // dispatch(globalActionCreators.updateLoadingSpinner(true));
 
     const playersListResponse = await playerService.loadPlayerList();
-    const playerList = playersListResponse.data.sort((a: any, b: any) =>
+    const playerList = playersListResponse.data.sort((a, b) =>
       a.surname < b.surname ? -1 : 1
     );
     dispatch(loadPlayerListSuccessAction(playerList));
