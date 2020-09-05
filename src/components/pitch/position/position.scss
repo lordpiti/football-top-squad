@@ -1,5 +1,21 @@
 .position {
   background-color: white;
-  padding: 5px;
+  padding: 10px;
   height: 20px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+
+  &.validPosition {
+    background-color: lightyellow;
+
+    &.isOver {
+      border-style: dashed;
+      background-color: yellow;
+    }
+  }
+
+  &.invalidPosition {
+    background-color: lightgray;
+  }
 }

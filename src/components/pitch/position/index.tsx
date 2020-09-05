@@ -39,21 +39,33 @@ const Position = (props: PositionProps) => {
     );
   };
 
-  const [{ isOver, canDrop }, drop] = useDrop({
+  const [{ isOver, canDrop, isItemDragging }, drop] = useDrop({
     accept: ItemTypes.PLAYER,
     drop: (item: AllProps, mon) => droppedMethod(item, props.positionIndex),
     canDrop: (item, mon) => canDropThis(item, props.positionIndex),
     collect: (mon) => ({
       isOver: !!mon.isOver(),
       canDrop: !!mon.canDrop(),
+      isItemDragging: mon.getItem() !== null,
     }),
   });
 
+  const overValidPosition = () => {
+    let clases = '';
+
+    if (isItemDragging) {
+      clases += canDrop ? 'validPosition' : 'invalidPosition';
+    }
+
+    if (isOver) {
+      clases += ' isOver';
+    }
+
+    return clases;
+  };
+
   return (
-    <div className='position' ref={drop}>
-      {isOver && !canDrop && <div>Over a not valid position</div>}
-      {isOver && canDrop && <div>Over a valid position</div>}
-      {!isOver && canDrop && <div>Valid position</div>}
+    <div className={`position ${overValidPosition()}`} ref={drop}>
       {props.positionIndex + 1} - {props.name}
     </div>
   );
