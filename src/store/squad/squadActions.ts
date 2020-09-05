@@ -16,5 +16,12 @@ export const saveSquadAction = (squadData: SaveSquadPayload): TopSquadThunk => {
     // dispatch(globalActionCreators.updateLoadingSpinner(true));
 
     const playersListResponse = await squadService.saveTopSquad(squadData);
+    dispatch(saveSquadSuccessAction());
+  };
+};
+
+export const saveSquadSuccessAction = () => {
+  return {
+    type: actionTypes.SAVE_SQUAD_SUCCESS,
   };
 };

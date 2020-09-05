@@ -9,20 +9,41 @@ interface PitchLineProps {
   startingPos: number;
 }
 
+const getLineNameByStartingPosition = (startingPos: number) => {
+  let line = 'Goalkeeper';
+  switch (startingPos) {
+    case 1:
+      line = 'Defender';
+      break;
+    case 5:
+      line = 'Midfielder';
+      break;
+    case 9:
+      line = 'Forward';
+      break;
+  }
+
+  return line;
+};
+
 const PitchLine = ({ positions, startingPos }: PitchLineProps) => {
   return (
     <div className='pitchLine'>
-      {positions.map((value, index: number) => (
-        <Position
-          key={index}
-          name={
-            (value as PlayerData).name
-              ? (value as PlayerData).name
-              : `Player ${startingPos + index}`
-          }
-          positionIndex={startingPos + index}
-        />
-      ))}
+      {positions.map((value, index: number) => {
+        const line = getLineNameByStartingPosition(startingPos);
+
+        return (
+          <Position
+            key={index}
+            name={
+              (value as PlayerData).name
+                ? (value as PlayerData).name
+                : `${line} ${startingPos > 0 ? index + 1 : ''}`
+            }
+            positionIndex={startingPos + index}
+          />
+        );
+      })}
     </div>
   );
 };

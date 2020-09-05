@@ -54,7 +54,7 @@ const Position = (props: PositionProps) => {
       {isOver && !canDrop && <div>Over a not valid position</div>}
       {isOver && canDrop && <div>Over a valid position</div>}
       {!isOver && canDrop && <div>Valid position</div>}
-      {props.positionIndex} - {props.name}
+      {props.positionIndex + 1} - {props.name}
     </div>
   );
 };

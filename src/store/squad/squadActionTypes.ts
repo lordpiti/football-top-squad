@@ -5,6 +5,7 @@ import { Positions } from '../../utilities/enums';
 export const LOAD_SQUAD = 'LOAD_SQUAD';
 export const SELECT_PLAYER_SQUAD = 'SELECT_PLAYER_SQUAD';
 export const SAVE_SQUAD = 'SAVE_SQUAD';
+export const SAVE_SQUAD_SUCCESS = 'SAVE_SQUAD_SUCCESS';
 
 type LoadSquadAction = {
   type: 'LOAD_SQUAD';
@@ -35,7 +36,12 @@ type SaveSquadAction = {
   payload: SaveSquadPayload;
 };
 
+type SaveSquadSuccessAction = {
+  type: 'SAVE_SQUAD_SUCCESS';
+};
+
 export type SquadActions =
   | LoadSquadAction
   | SelectPlayerSquadAction
-  | SaveSquadAction;
+  | SaveSquadAction
+  | SaveSquadSuccessAction;

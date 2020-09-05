@@ -12,7 +12,14 @@ const initialState = {
   squad: [],
 } as SquadState;
 
-for (var i = 0; i < 11; i++) initialState.squad.push({});
+const createEmptySquad = () => {
+  const emptySquad: PlayerDataOrEmpty[] = [];
+  for (var i = 0; i < 11; i++) emptySquad.push({});
+
+  return emptySquad;
+};
+
+initialState.squad = createEmptySquad();
 
 const reducer = (state = initialState, action: SquadActions) => {
   switch (action.type) {
@@ -27,6 +34,11 @@ const reducer = (state = initialState, action: SquadActions) => {
         ...state,
         squad: newsquad,
       } as SquadState;
+    case actionTypes.SAVE_SQUAD_SUCCESS:
+      return {
+        ...state,
+        squad: createEmptySquad(),
+      };
     default:
       break;
   }
