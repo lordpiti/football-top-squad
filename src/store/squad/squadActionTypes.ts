@@ -6,6 +6,7 @@ export const LOAD_SQUAD = 'LOAD_SQUAD';
 export const SELECT_PLAYER_SQUAD = 'SELECT_PLAYER_SQUAD';
 export const SAVE_SQUAD = 'SAVE_SQUAD';
 export const SAVE_SQUAD_SUCCESS = 'SAVE_SQUAD_SUCCESS';
+export const LOAD_PLAYER_PICTURE = 'LOAD_PLAYER_PICTURE';
 
 type LoadSquadAction = {
   type: 'LOAD_SQUAD';
@@ -14,6 +15,7 @@ type LoadSquadAction = {
 export interface PayloadSelectPlayerSquad {
   player: PlayerData;
   position: number;
+  picture?: string;
 }
 
 type SelectPlayerSquadAction = {
@@ -40,8 +42,14 @@ type SaveSquadSuccessAction = {
   type: 'SAVE_SQUAD_SUCCESS';
 };
 
+type LoadPlayerPictureAction = {
+  type: 'LOAD_PLAYER_PICTURE';
+  payload: any;
+};
+
 export type SquadActions =
   | LoadSquadAction
   | SelectPlayerSquadAction
   | SaveSquadAction
-  | SaveSquadSuccessAction;
+  | SaveSquadSuccessAction
+  | LoadPlayerPictureAction;

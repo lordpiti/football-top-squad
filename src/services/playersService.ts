@@ -13,4 +13,8 @@ export class PlayersService {
   public async loadPlayerList(): Promise<AxiosResponse<PlayerResponse[]>> {
     return await axiosInstance.get('player');
   }
+
+  public async loadPlayer(playerId: number): Promise<AxiosResponse<any>> {
+    return await axiosInstance.get(`player/${playerId}`);
+  }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import './pitchLine.scss';
 import Position from '../position';
-import { PlayerDataOrEmpty } from '../../../store/squad/squadReducer';
-import { PlayerData } from '../../player-list/player';
+import {
+  PlayerDataExtended,
+  PlayerDataOrEmpty,
+} from '../../../store/squad/squadReducer';
 
 interface PitchLineProps {
   positions: PlayerDataOrEmpty[];
@@ -36,11 +38,12 @@ const PitchLine = ({ positions, startingPos }: PitchLineProps) => {
           <Position
             key={index}
             name={
-              (value as PlayerData).name
-                ? (value as PlayerData).name
+              (value as PlayerDataExtended).name
+                ? (value as PlayerDataExtended).name
                 : `${line} ${startingPos > 0 ? index + 1 : ''}`
             }
             positionIndex={startingPos + index}
+            picture={(value as PlayerDataExtended).picture}
           />
         );
       })}

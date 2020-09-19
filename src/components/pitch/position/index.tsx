@@ -9,6 +9,7 @@ import { PlayerData } from '../../player-list/player';
 export interface PositionProps {
   positionIndex: number;
   name: string;
+  picture?: string;
 }
 
 type AllProps = DragObjectWithType & PlayerData;
@@ -37,6 +38,7 @@ const Position = (props: PositionProps) => {
         },
       })
     );
+    dispatch(actionCreators.loadPlayerPictureAction(item.id));
   };
 
   const [{ isOver, canDrop, isItemDragging }, drop] = useDrop({
@@ -65,8 +67,13 @@ const Position = (props: PositionProps) => {
   };
 
   return (
-    <div className={`position ${overValidPosition()}`} ref={drop}>
-      {props.positionIndex + 1} - {props.name}
+    <div>
+      <div className={`position ${overValidPosition()}`} ref={drop}>
+        {props.picture && (
+          <img src={props.picture} alt='' height='40' width='40' />
+        )}
+        {props.positionIndex + 1} - {props.name}
+      </div>
     </div>
   );
 };

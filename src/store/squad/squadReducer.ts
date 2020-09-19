@@ -2,7 +2,11 @@ import * as actionTypes from './squadActionTypes';
 import { PlayerData } from '../../components/player-list/player';
 import { SquadActions } from './squadActionTypes';
 
-export type PlayerDataOrEmpty = PlayerData | {};
+export interface PlayerDataExtended extends PlayerData {
+  picture?: string;
+}
+
+export type PlayerDataOrEmpty = PlayerDataExtended | {};
 
 export interface SquadState {
   squad: PlayerDataOrEmpty[];
@@ -38,6 +42,17 @@ const reducer = (state = initialState, action: SquadActions) => {
       return {
         ...state,
         squad: createEmptySquad(),
+      };
+    case actionTypes.LOAD_PLAYER_PICTURE:
+      const squadWithUpdatedPicture = state.squad.map((content, i) =>
+        (content as PlayerData).id === action.payload.playerId
+          ? { ...content, picture: action.payload.picture.url }
+          : content
+      );
+
+      return {
+        ...state,
+        squad: squadWithUpdatedPicture,
       };
     default:
       break;
