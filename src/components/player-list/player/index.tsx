@@ -10,7 +10,7 @@ export interface PlayerData {
   positionCode: Positions;
 }
 
-interface PlayerProps {
+export interface PlayerProps {
   player: PlayerData;
   isSelected: boolean;
 }

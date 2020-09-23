@@ -1,5 +1,5 @@
+import { TopSquadDispatch, TopSquadThunk } from '..';
 import * as actionTypes from './squadActionTypes';
-import { TopSquadDispatch, TopSquadThunk } from '../..';
 import { PayloadSelectPlayerSquad, SaveSquadPayload } from './squadActionTypes';
 
 export const selectPlayerSquadAction = (

@@ -1,13 +1,16 @@
 import React from 'react';
 import './Pitch.scss';
 import { useSelector } from 'react-redux';
-import { TopSquadState } from '../..';
 import PitchLine from './pitchLine';
+import { TopSquadState } from '../../store';
 
 const Pitch = () => {
-  const theState = useSelector((state: TopSquadState) => ({
-    squad: state.squad.squad,
-  }));
+  const theState = useSelector((state: TopSquadState) => {
+    debugger;
+    return {
+      squad: state.squad.squad,
+    };
+  });
 
   return (
     <div className='pitch'>

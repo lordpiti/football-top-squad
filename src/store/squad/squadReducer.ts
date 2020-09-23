@@ -25,7 +25,7 @@ const createEmptySquad = () => {
 
 initialState.squad = createEmptySquad();
 
-const reducer = (state = initialState, action: SquadActions) => {
+const squadReducer = (state = initialState, action: SquadActions) => {
   switch (action.type) {
     case actionTypes.SELECT_PLAYER_SQUAD:
       const player = action.payload.player;
@@ -60,4 +60,4 @@ const reducer = (state = initialState, action: SquadActions) => {
   return state;
 };
 
-export default reducer;
+export default squadReducer;

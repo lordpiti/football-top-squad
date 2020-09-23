@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Player, { PlayerData } from './player';
 import './player-list.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { TopSquadState } from '../..';
 import * as playerActionCreators from '../../store/players/playerActions';
 import * as squadActionCreators from '../../store/squad/squadActions';
 import { Positions } from '../../utilities/enums';
+import { TopSquadState } from '../../store';
 
 const PlayerList = () => {
   const dispatch = useDispatch();
