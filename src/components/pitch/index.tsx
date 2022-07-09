@@ -6,7 +6,6 @@ import { TopSquadState } from '../../store';
 
 const Pitch = () => {
   const theState = useSelector((state: TopSquadState) => {
-    debugger;
     return {
       squad: state.squad.squad,
     };

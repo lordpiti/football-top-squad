@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { configureStore } from './store/index';
 
 const store = configureStore();
-debugger;
 
 ReactDOM.render(
   <React.StrictMode>
