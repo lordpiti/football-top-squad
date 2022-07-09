@@ -1,6 +1,6 @@
 import React from 'react';
 import './position.scss';
-import { useDrop, DragObjectWithType } from 'react-dnd';
+import { useDrop } from 'react-dnd';
 import { ItemTypes } from '../../../App';
 import { useDispatch } from 'react-redux';
 import * as actionCreators from '../../../store/squad/squadActions';
@@ -12,7 +12,7 @@ export interface PositionProps {
   picture?: string;
 }
 
-export type Draggable<T> = DragObjectWithType & T;
+export type Draggable<T> = { type: string } & T;
 
 const canDropThis = (item: Draggable<PlayerData>, pos: number) => {
   return (
@@ -38,7 +38,7 @@ const Position = (props: PositionProps) => {
         },
       })
     );
-    dispatch(actionCreators.loadPlayerPictureAction(item.id));
+    dispatch(actionCreators.loadPlayerPictureAction(item.id) as any);
   };
 
   const [{ isOver, canDrop, isItemDragging }, drop] = useDrop({

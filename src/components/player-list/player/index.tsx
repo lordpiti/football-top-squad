@@ -31,6 +31,7 @@ const Player = ({ player, isSelected }: PlayerProps) => {
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
+    type: ItemTypes.PLAYER
   });
 
   return (

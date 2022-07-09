@@ -20,7 +20,7 @@ const PlayerList = () => {
   );
 
   useEffect(() => {
-    dispatch(playerActionCreators.loadPlayerListAction());
+    dispatch(playerActionCreators.loadPlayerListAction() as any);
   }, []);
 
   const getEnumValues = (enumerao: any) => {
@@ -49,7 +49,7 @@ const PlayerList = () => {
         squadActionCreators.saveSquadAction({
           userId: 'test',
           squad: squadToSubmit,
-        })
+        }) as any
       );
       console.log('dispatched');
     }
