@@ -3,6 +3,8 @@ import './player.scss';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '../../../App';
 import { Positions } from '../../../utilities/enums';
+import { Draggable } from '../../pitch/position';
+
 
 export interface PlayerData {
   id: number;
@@ -16,7 +18,9 @@ export interface PlayerProps {
 }
 
 const Player = ({ player, isSelected }: PlayerProps) => {
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag<Draggable<PlayerData>, unknown, {
+    isDragging: boolean;
+  }>({
     item: {
       type: ItemTypes.PLAYER,
       name: player.name,

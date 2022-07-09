@@ -12,9 +12,9 @@ export interface PositionProps {
   picture?: string;
 }
 
-type AllProps = DragObjectWithType & PlayerData;
+export type Draggable<T> = DragObjectWithType & T;
 
-const canDropThis = (item: AllProps, pos: number) => {
+const canDropThis = (item: Draggable<PlayerData>, pos: number) => {
   return (
     (item.positionCode === 1 && pos === 0) ||
     (item.positionCode === 2 && pos > 0 && pos < 5) ||
@@ -26,7 +26,7 @@ const canDropThis = (item: AllProps, pos: number) => {
 const Position = (props: PositionProps) => {
   const dispatch = useDispatch();
 
-  const droppedMethod = (item: AllProps, position: number) => {
+  const droppedMethod = (item: Draggable<PlayerData>, position: number) => {
     console.log(`${item.name} dropped on position ${position}`);
     dispatch(
       actionCreators.selectPlayerSquadAction({
@@ -43,7 +43,8 @@ const Position = (props: PositionProps) => {
 
   const [{ isOver, canDrop, isItemDragging }, drop] = useDrop({
     accept: ItemTypes.PLAYER,
-    drop: (item: AllProps, mon) => droppedMethod(item, props.positionIndex),
+    drop: (item: Draggable<PlayerData>, mon) => droppedMethod(item, props.positionIndex),
+    hover: (item, mon) => { console.log('haha') },
     canDrop: (item, mon) => canDropThis(item, props.positionIndex),
     collect: (mon) => ({
       isOver: !!mon.isOver(),
